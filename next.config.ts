@@ -29,13 +29,6 @@ const nextConfig: NextConfig = {
   // (Next.js 16 decoupled ESLint from `next build` entirely, so there's no
   // equivalent `eslint` build option anymore - use `next lint` / npm run lint.)
   typescript: { ignoreBuildErrors: true },
-  // Force fully sequential static generation (1 worker instead of parallel
-  // workers each holding their own copy of the render context) to cut peak
-  // build memory on the constrained 8GB build machine, at the cost of a
-  // slower build.
-  experimental: {
-    cpus: 1,
-  },
   async headers() {
     return [
       {
