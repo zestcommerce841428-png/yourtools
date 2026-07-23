@@ -37,11 +37,16 @@ yarn-error.log*
 # vercel
 .vercel
 
-# opennext (no longer used - kept ignored in case build artifacts linger locally)
+# opennext (Cloudflare Workers build output - generated fresh in CI, not committed)
 .open-next
+
+# claude code internal state
+.claude/scheduled_tasks.lock
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 1000freetools.zip
+
+.vercel

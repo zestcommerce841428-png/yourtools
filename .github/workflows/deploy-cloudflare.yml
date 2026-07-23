@@ -1,0 +1,35 @@
+name: Deploy to Cloudflare Workers
+
+# Builds via the OpenNext Cloudflare adapter on GitHub's runner (not locally -
+# this app's build needs more memory than an 8GB machine comfortably gives it),
+# then deploys the Worker with wrangler.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show runner resources
+        run: free -h && nproc
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build for Cloudflare Workers
+        run: npm run cf:build
+
+      - name: Deploy to Cloudflare Workers
+        run: npx wrangler deploy

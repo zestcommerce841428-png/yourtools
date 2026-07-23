@@ -94,3 +94,12 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Enable Cloudflare's local dev bindings when running `next dev`.
+// Next.js forces NODE_ENV to "production" for `next build` and "development"
+// for `next dev`, so this guard keeps the Miniflare/workerd init from firing
+// (and crashing) during production builds.
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+if (process.env.NODE_ENV === "development") {
+  initOpenNextCloudflareForDev();
+}
