@@ -1,0 +1,89 @@
+﻿
+> my-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+
+✓ Starting...
+✓ Ready in 10.7s
+○ Compiling /date-time-tools/business-days-calculator ...
+ GET / 200 in 5.9s (compile: 3.1s, render: 2.8s)
+ GET /url-tools/url-ip-address-lookup 200 in 438ms (compile: 395ms, render: 42ms)
+ GET / 200 in 1669ms (compile: 58ms, render: 1612ms)
+ GET /image-tools 200 in 2.5s (compile: 1315ms, render: 1172ms)
+ GET /audio-tools/audio-track-extractor 200 in 2.4s (compile: 2.2s, render: 237ms)
+ GET /password-tools 200 in 2.5s (compile: 782ms, render: 1749ms)
+ GET /ascii-tools/ascii-art-generator 200 in 2.2s (compile: 1143ms, render: 1070ms)
+✓ Finished filesystem cache database compaction in 13.9s
+✓ Finished writing to filesystem cache in 10.2s
+ GET / 200 in 11.4s (compile: 1589ms, render: 9.9s)
+○ Compiling /simulators/bacteria-growth-simulator ...
+ GET / 200 in 3.4s (compile: 211ms, render: 3.2s)
+ GET /simulators/bacteria-growth-simulator 200 in 55s (compile: 55s, render: 473ms)
+✓ Finished filesystem cache database compaction in 29.0s
+✓ Finished writing to filesystem cache in 27.6s
+ GET /ascii-tools/ascii-to-hex-converter 200 in 2.7s (compile: 2.4s, render: 368ms)
+ GET /ascii-tools/ascii-to-hex-converter 200 in 2.5s (compile: 16ms, render: 2.5s)
+ GET /url-tools/url-ip-address-lookup 200 in 1175ms (compile: 18ms, render: 1157ms)
+ GET /url-tools/url-ip-address-lookup 200 in 855ms (compile: 14ms, render: 841ms)
+ GET /url-tools/url-ip-address-lookup 200 in 902ms (compile: 10ms, render: 892ms)
+ GET /url-tools/url-ip-address-lookup 200 in 898ms (compile: 6ms, render: 892ms)
+ GET /url-tools/url-ip-address-lookup 200 in 1068ms (compile: 7ms, render: 1061ms)
+ GET / 200 in 1389ms (compile: 12ms, render: 1377ms)
+ GET /image-tools/image-to-gif 200 in 1056ms (compile: 1020ms, render: 36ms)
+ GET /audio-tools/audio-frequency-analyzer 200 in 634ms (compile: 581ms, render: 53ms)
+ GET /audio-tools/audio-frequency-analyzer 200 in 1189ms (compile: 11ms, render: 1178ms)
+✓ Compiled in 55.5s
+ GET /url-tools/url-ip-address-lookup 200 in 4.2s (compile: 394ms, render: 3.8s)
+✓ Finished writing to filesystem cache in 23.0s
+ GET /url-tools/url-ip-address-lookup 200 in 1356ms (compile: 189ms, render: 1166ms)
+✓ Finished filesystem cache database compaction in 13.5s
+ GET /audio-tools/audio-frequency-analyzer 200 in 844ms (compile: 15ms, render: 829ms)
+ GET /audio-tools/audio-frequency-analyzer 200 in 1602ms (compile: 16ms, render: 1586ms)
+ GET /url-tools/url-ip-address-lookup 200 in 865ms (compile: 7ms, render: 858ms)
+ GET /url-tools/url-ip-address-lookup 200 in 861ms (compile: 8ms, render: 854ms)
+ GET / 200 in 1295ms (compile: 13ms, render: 1282ms)
+○ Compiling /ascii-tools ...
+ GET /ascii-tools 200 in 4.3s (compile: 4.2s, render: 74ms)
+ GET /ascii-tools/ascii-art-generator 200 in 55ms (compile: 24ms, render: 31ms)
+ GET /url-tools/url-ip-address-lookup 200 in 1107ms (compile: 9ms, render: 1098ms)
+ GET /url-tools/url-ip-address-lookup 200 in 757ms (compile: 7ms, render: 751ms)
+ GET /url-tools/url-ip-address-lookup 200 in 880ms (compile: 6ms, render: 874ms)
+ GET /url-tools/url-ip-address-lookup 200 in 1123ms (compile: 154ms, render: 969ms)
+ GET / 200 in 1529ms (compile: 105ms, render: 1424ms)
+ GET / 200 in 158ms (compile: 17ms, render: 141ms)
+○ Compiling /design-tools/favicon-generator ...
+ GET /design-tools/favicon-generator 200 in 3.2s (compile: 3.1s, render: 74ms)
+ GET /audio-tools/audio-format-converter 200 in 2.1s (compile: 2.0s, render: 58ms)
+✓ Finished filesystem cache database compaction in 13.5s
+✓ Compiled in 2.6s
+ GET /audio-tools/audio-frequency-analyzer 200 in 1101ms (compile: 118ms, render: 983ms)
+ GET / 200 in 1123ms (compile: 69ms, render: 1054ms)
+ GET /ascii-tools 200 in 891ms (compile: 75ms, render: 816ms)
+ GET /password-tools 200 in 827ms (compile: 72ms, render: 755ms)
+ GET /image-tools/image-compressor 200 in 2.6s (compile: 1720ms, render: 919ms)
+ GET / 200 in 2.6s (compile: 310ms, render: 2.3s)
+ GET /image-tools/image-to-gif 200 in 332ms (compile: 277ms, render: 55ms)
+ GET /audio-tools/audio-frequency-analyzer 200 in 54ms (compile: 10ms, render: 44ms)
+ GET /developer-tools/mock-data-generator 200 in 1601ms (compile: 1560ms, render: 41ms)
+ GET /developer-tools/mock-data-generator 200 in 1848ms (compile: 24ms, render: 1824ms)
+ GET / 200 in 220ms (compile: 29ms, render: 190ms)
+ GET / 200 in 1262ms (compile: 15ms, render: 1247ms)
+ GET / 200 in 1455ms (compile: 19ms, render: 1436ms)
+ GET /qr-code-tools 200 in 1053ms (compile: 1023ms, render: 31ms)
+ GET /qr-code-tools/qr-code-vcard-generator 200 in 1238ms (compile: 1209ms, render: 29ms)
+node.exe : ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (⚠ Found a chang... the changes...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.4:3000
+
+✓ Starting...
+✓ Ready in 5.3s

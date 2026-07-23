@@ -1,0 +1,83 @@
+import type { Metadata } from "next";
+import ToolLinkCards from "@/components/utils/ToolLinkCards";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: "Power Factor Calculator – Calculate PF and Phase Angle",
+  description: "Calculate power factor, phase angle, and reactive power for AC circuits. Essential for power system analysis.",
+  alternates: {
+    canonical: "/calculators/power-factor-calculator",
+  },
+};
+
+const tools = [
+  {
+    "name": "Ohms Law Calculator",
+    "description": "Ohm's Law Calculator",
+    "href": "/calculators/ohms-law-calculator"
+  },
+  {
+    "name": "Electric Power Calculator",
+    "description": "Electric Power Calculator",
+    "href": "/calculators/electric-power-calculator"
+  },
+  {
+    "name": "Voltage Calculator",
+    "description": "Voltage Calculator",
+    "href": "/calculators/voltage-calculator"
+  },
+  {
+    "name": "Ac Impedance Calculator",
+    "description": "AC Impedance Calculator – Calculate Impedance in AC Circuits",
+    "href": "/calculators/ac-impedance-calculator"
+  },
+  {
+    "name": "Current Calculator",
+    "description": "Current Calculator – Calculate Electrical Current (Amps)",
+    "href": "/calculators/current-calculator"
+  },
+  {
+    "name": "Resistance Calculator",
+    "description": "Resistance Calculator – Calculate Resistance with Ohm's Law",
+    "href": "/calculators/resistance-calculator"
+  }
+];
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-y-4">
+            <div>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators">Calculators</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators/power-factor-calculator">Power Factor Calculator</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+            <header className="max-w-3xl">
+        <h1 className="text-3xl font-bold mb-3">Power Factor Calculator – Calculate PF and Phase Angle</h1>
+        <p className="text-muted-foreground">Calculate power factor, phase angle, and reactive power for AC circuits. Essential for power system analysis.</p>
+      </header>
+      {children}
+      <div className="mt-16 max-w-6xl">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Other Free Tools</h2>
+        <ToolLinkCards tools={tools} />
+      </div>
+    </div>
+  );
+}

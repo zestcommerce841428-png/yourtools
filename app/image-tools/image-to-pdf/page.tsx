@@ -1,0 +1,451 @@
+"use client";
+import { useState, useCallback } from "react";
+import {
+  Image as ImageIcon,
+  FileText,
+  Download,
+  Upload,
+  X,
+  Loader2,
+  Settings,
+  Archive,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useDropzone } from "react-dropzone";
+import { toast } from "sonner";
+import NextImage from "next/image";
+
+import {
+  convertImagesToPdf,
+  createImageFiles,
+  cleanupImageFiles,
+  validateImageFiles,
+  formatFileSize,
+  DEFAULT_IMAGE_TO_PDF_OPTIONS,
+  createAndDownloadZip,
+  downloadFile as downloadFileUtil,
+  type ImageFile,
+  type ImageToPdfOptions,
+  type ConversionResult,
+} from "@/components/image-tools/utils";
+import { ImageToPdfSEO } from "@/components/seo-content/image-tools/ImageToPdf";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export default function ImageToPdfPage() {
+  const [files, setFiles] = useState<ImageFile[]>([]);
+  const [processing, setProcessing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentFile, setCurrentFile] = useState(0);
+  const [totalFiles, setTotalFiles] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+  const [generatedFiles, setGeneratedFiles] = useState<
+    Array<{ name: string; blob: Blob }>
+  >([]);
+  const [options, setOptions] = useState<ImageToPdfOptions>(
+    DEFAULT_IMAGE_TO_PDF_OPTIONS,
+  );
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const imageFiles = validateImageFiles(acceptedFiles);
+    if (imageFiles.length === 0) {
+      setError("Please select image files only");
+      return;
+    }
+    const newFiles = createImageFiles(imageFiles);
+    setFiles((prev) => [...prev, ...newFiles]);
+    setError(null);
+    toast.success(`${imageFiles.length} image(s) added successfully`);
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/*": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"],
+    },
+    multiple: true,
+  });
+
+  const removeFile = (id: string) => {
+    setFiles((prev) => {
+      const file = prev.find((f) => f.id === id);
+      if (file) {
+        if (file.preview) URL.revokeObjectURL(file.preview);
+      }
+      return prev.filter((file) => file.id !== id);
+    });
+  };
+
+  const convertToPdf = async () => {
+    if (files.length === 0) {
+      setError("Please add at least one image file");
+      return;
+    }
+    setProcessing(true);
+    setProgress(0);
+    setError(null);
+    setGeneratedFiles([]);
+    try {
+      const results: ConversionResult[] = await convertImagesToPdf(
+        files,
+        options,
+        (current, total, progress) => {
+          setProgress(progress);
+          setCurrentFile(current);
+          setTotalFiles(total);
+        },
+      );
+      setGeneratedFiles(results);
+      setProgress(100);
+      if (options.mode === "individual" && results.length > 1) {
+        await createAndDownloadZip(
+          results.map((result) => ({ name: result.name, blob: result.blob })),
+          {
+            zipName: "converted-pdfs.zip",
+            onComplete: (success) => {
+              if (success)
+                toast.success("PDFs created and packaged in ZIP file!");
+              else toast.error("Failed to create ZIP file");
+            },
+          },
+        );
+      } else {
+        toast.success("Images converted to PDF successfully!");
+      }
+      setProcessing(false);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "An error occurred during conversion",
+      );
+      setProcessing(false);
+      toast.error("Conversion failed");
+    }
+  };
+
+  const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/" className="text-foreground">
+                Home
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/image-tools" className="text-foreground">
+                Image Tools
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                href="/image-tools/image-to-pdf"
+                className="text-foreground"
+              >
+                Image to PDF
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 mt-4">
+          Free Image to PDF Converter
+        </h1>
+        <p className="text-base sm:text-lg md:text-xl max-w-4xl text-muted-foreground">
+          Combine multiple photos into a single PDF document. Choose page size,
+          orientation. All processing in your browser.
+        </p>
+      </div>
+
+      <div className="container mx-auto py-8 w-full">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Upload Images</CardTitle>
+              <CardDescription>
+                Drag and drop image files or click to browse
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div
+                {...getRootProps()}
+                className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+                  isDragActive
+                    ? "border-blue-400 bg-blue-50"
+                    : "border-slate-300 hover:border-slate-400"
+                }`}
+              >
+                <input {...getInputProps()} />
+                <Upload className="mx-auto h-12 w-12 text-slate-400 mb-4" />
+                {isDragActive ? (
+                  <p className="text-blue-600">Drop the image files here...</p>
+                ) : (
+                  <div>
+                    <p className="text-slate-600 mb-2">
+                      Drag & drop images here, or click to select files
+                    </p>
+                    <p className="text-sm text-slate-500">
+                      Multiple files supported • JPG, PNG, GIF, BMP, WebP
+                    </p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Settings className="h-5 w-5 mr-2" />
+                Conversion Options
+              </CardTitle>
+              <CardDescription>
+                Configure how your images will be converted to PDF
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Conversion Mode</Label>
+                  <Select
+                    value={options.mode}
+                    onValueChange={(value: "single" | "individual") =>
+                      setOptions((prev) => ({ ...prev, mode: value }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="single">
+                        Single PDF (all images)
+                      </SelectItem>
+                      <SelectItem value="individual">
+                        Individual PDFs
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label>Page Size</Label>
+                  <Select
+                    value={options.pageSize}
+                    onValueChange={(value: "a4" | "letter" | "legal") =>
+                      setOptions((prev) => ({ ...prev, pageSize: value }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="a4">A4</SelectItem>
+                      <SelectItem value="letter">Letter</SelectItem>
+                      <SelectItem value="legal">Legal</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Label htmlFor="orientation">Orientation</Label>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="orientation"
+                    checked={options.orientation === "landscape"}
+                    onCheckedChange={(checked) =>
+                      setOptions((prev) => ({
+                        ...prev,
+                        orientation: checked ? "landscape" : "portrait",
+                      }))
+                    }
+                  />
+                  <Label htmlFor="orientation" className="text-sm">
+                    {options.orientation === "portrait"
+                      ? "Portrait"
+                      : "Landscape"}
+                  </Label>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {files.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <ImageIcon className="h-5 w-5 mr-2" />
+                  Images to Convert ({files.length})
+                </CardTitle>
+                <CardDescription>
+                  Total size: {formatFileSize(totalSize)}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                  {files.map((file) => (
+                    <div
+                      key={file.id}
+                      className="relative group cursor-pointer border rounded-lg overflow-hidden"
+                    >
+                      {file.preview && (
+                        <NextImage
+                          src={file.preview}
+                          alt={`Preview of ${file.name}`}
+                          className="w-full h-24 object-cover"
+                          height={160}
+                          width={90}
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeFile(file.id)}
+                          className="text-white hover:bg-opacity-20"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      <p className="text-xs text-center p-1 truncate bg-gray-50">
+                        {file.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {processing && (
+            <Card>
+              <CardContent className="pt-6">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-slate-700">
+                      Converting images...
+                    </span>
+                    <span className="text-sm text-slate-500">{progress}%</span>
+                  </div>
+                  <Progress value={progress} className="w-full" />
+                  <p className="text-xs text-slate-500 text-center">
+                    Processing file {currentFile} of {totalFiles}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          {generatedFiles.length > 0 && (
+            <Card className="border-green-200 bg-green-50">
+              <CardContent className="pt-6">
+                <div className="text-center space-y-4">
+                  <div className="mx-auto p-3 rounded-full bg-green-100 w-12 h-12 flex items-center justify-center">
+                    <FileText className="h-6 w-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-green-900">
+                      Conversion Complete!
+                    </h3>
+                    <p className="text-sm text-green-700 mt-1">
+                      {generatedFiles.length} file(s) generated
+                    </p>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                    {generatedFiles.map((file, index) => (
+                      <Button
+                        key={index}
+                        onClick={() => downloadFileUtil(file)}
+                        className="bg-green-600 hover:bg-green-700"
+                      >
+                        {file.name.endsWith(".zip") ? (
+                          <Archive className="h-4 w-4 mr-2" />
+                        ) : (
+                          <Download className="h-4 w-4 mr-2" />
+                        )}
+                        Download {file.name}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          <div className="flex justify-center space-x-4">
+            <Button
+              onClick={convertToPdf}
+              disabled={files.length === 0 || processing}
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              {processing ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Converting...
+                </>
+              ) : (
+                <>
+                  <FileText className="h-4 w-4 mr-2" />
+                  Convert to PDF
+                  {options.mode === "individual" && files.length > 1 ? "s" : ""}
+                </>
+              )}
+            </Button>
+            {files.length > 0 && !processing && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  cleanupImageFiles(files);
+                  setFiles([]);
+                  setGeneratedFiles([]);
+                  setError(null);
+                  setProgress(0);
+                }}
+                size="lg"
+              >
+                Clear All
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col gap-8 text-foreground prose dark:prose-invert max-w-none">
+        <ImageToPdfSEO />
+      </div>
+    </div>
+  );
+}

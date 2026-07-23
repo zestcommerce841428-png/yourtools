@@ -1,0 +1,83 @@
+import type { Metadata } from "next";
+import ToolLinkCards from "@/components/utils/ToolLinkCards";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: "Pump Horsepower Calculator – Calculate Required Pump Power",
+  description: "Size your pump correctly with our pump horsepower calculator. Enter flow rate, total head, and efficiency to find the required pump power in HP or kW.",
+  alternates: {
+    canonical: "/calculators/pump-horsepower-calculator",
+  },
+};
+
+const tools = [
+  {
+    "name": "Horsepower To Kw Converter",
+    "description": "Horsepower to kW Converter – Instantly Convert HP to Kilowatts",
+    "href": "/calculators/horsepower-to-kw-converter"
+  },
+  {
+    "name": "Torque Calculator",
+    "description": "Torque Calculator",
+    "href": "/calculators/torque-calculator"
+  },
+  {
+    "name": "Shaft Torque Calculator",
+    "description": "Shaft Torque Calculator – Calculate Shaft Torque",
+    "href": "/calculators/shaft-torque-calculator"
+  },
+  {
+    "name": "Robot Motor Torque Calculator",
+    "description": "Robot Motor Torque Calculator – Calculate Required Torque for Motors & Actuators",
+    "href": "/calculators/robot-motor-torque-calculator"
+  },
+  {
+    "name": "Electric Power Calculator",
+    "description": "Electric Power Calculator",
+    "href": "/calculators/electric-power-calculator"
+  },
+  {
+    "name": "Safety Factor Calculator",
+    "description": "Safety Factor Calculator – Factor of Safety Calculator",
+    "href": "/calculators/safety-factor-calculator"
+  }
+];
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-y-4">
+            <div>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators">Calculators</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators/pump-horsepower-calculator">Pump Horsepower Calculator</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+            <header className="max-w-3xl">
+        <h1 className="text-3xl font-bold mb-3">Pump Horsepower Calculator – Calculate Required Pump Power</h1>
+        <p className="text-muted-foreground">Size your pump correctly with our pump horsepower calculator. Enter flow rate, total head, and efficiency to find the required pump power in HP or kW.</p>
+      </header>
+      {children}
+      <div className="mt-16 max-w-6xl">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Other Free Tools</h2>
+        <ToolLinkCards tools={tools} />
+      </div>
+    </div>
+  );
+}

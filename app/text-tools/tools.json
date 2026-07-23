@@ -1,0 +1,482 @@
+[
+    {
+        "toolName": "Word Counter",
+        "description": "Real-time word, character, sentence, paragraph, and page count. Show reading time, speaking time, keyword density, average sentence length, and social media character limits (Twitter 280, Instagram 2200, Meta description 160). Include a clean text editor with live stats updating as you type.",
+        "h1": "Word Counter — Instant Word & Character Count Online",
+        "p": "Paste your essay, article, tweet, or novel draft and get an instant breakdown of words, characters, sentences, and reading time — all updating live as you type. No sign-up. No fluff.",
+        "shortTail": [
+            "word counter",
+            "word count"
+        ],
+        "mediumTail": [
+            "online word counter tool",
+            "word and character counter",
+            "word count checker free",
+            "how many words in my text"
+        ],
+        "longTail": [
+            "free online word counter for essays",
+            "word counter with reading time estimator",
+            "word counter for twitter and social media",
+            "how to count words in a document online",
+            "word counter that shows keyword density",
+            "real time word and character count tool"
+        ]
+    },
+    {
+        "toolName": "Character Counter",
+        "description": "Count characters with and without spaces. Show limits for SMS (160), Twitter (280), meta titles (60), meta descriptions (160), Instagram bio (150), YouTube title (100). Color-code warnings when approaching limits. Include a live progress bar toward common platform limits.",
+        "h1": "Character Counter — Count Characters Instantly for Any Platform",
+        "p": "Whether you're writing a tweet, a meta description, or an SMS, this character counter keeps you inside the limit — with real-time feedback for every platform that actually matters.",
+        "shortTail": [
+            "character counter",
+            "character count"
+        ],
+        "mediumTail": [
+            "online character count tool",
+            "character counter for twitter",
+            "count characters with spaces",
+            "character limit checker"
+        ],
+        "longTail": [
+            "character counter for meta description SEO",
+            "how many characters in my text online",
+            "character counter for instagram bio",
+            "free character count tool no login",
+            "character counter with and without spaces",
+            "SMS character limit checker online"
+        ]
+    },
+    {
+        "toolName": "Case Converter",
+        "description": "Convert text between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE_CASE, and aLtErNaTiNg CaSe. One-click copy button for each output. Useful for writers, developers, and SEO professionals.",
+        "h1": "Case Converter — Transform Text Case Instantly Online",
+        "p": "From snake_case to Title Case to SCREAMING_SNAKE_CASE — convert your text into any case format in one click. Built for developers, copywriters, and anyone who's ever pasted the wrong casing into production.",
+        "shortTail": [
+            "case converter",
+            "text case converter"
+        ],
+        "mediumTail": [
+            "uppercase to lowercase converter",
+            "title case converter online",
+            "camelcase to snake case converter",
+            "text case changer tool"
+        ],
+        "longTail": [
+            "convert text to uppercase online free",
+            "sentence case converter for titles and headings",
+            "camelCase PascalCase snake_case converter tool",
+            "how to convert text case online",
+            "uppercase lowercase title case converter free",
+            "case converter for programmers and developers"
+        ]
+    },
+    {
+        "toolName": "Remove Duplicate Lines",
+        "description": "Paste a list and instantly remove all duplicate lines. Options to keep first or last occurrence, case-sensitive or insensitive matching, sort output alphabetically, and show a count of how many duplicates were removed. Essential for cleaning CSV data, email lists, and keywords.",
+        "h1": "Remove Duplicate Lines — Clean Your Lists Instantly",
+        "p": "Got a messy list full of repeats? Paste it in and watch duplicates vanish — with options for case-sensitive matching, sorting, and a live count of exactly what got cleaned out.",
+        "shortTail": [
+            "remove duplicate lines",
+            "delete duplicate lines"
+        ],
+        "mediumTail": [
+            "remove duplicate lines from text",
+            "online duplicate line remover",
+            "remove duplicates from list tool",
+            "delete repeated lines in text"
+        ],
+        "longTail": [
+            "how to remove duplicate lines from a list online",
+            "remove duplicate lines from csv or text file",
+            "free tool to delete duplicate entries in a list",
+            "remove duplicate words and lines online",
+            "case insensitive duplicate line remover",
+            "remove duplicate lines and sort alphabetically"
+        ]
+    },
+    {
+        "toolName": "Text to Slug Converter",
+        "description": "Convert any headline, title, or phrase into a clean URL slug. Options for separator (hyphen or underscore), lowercase enforcement, stop-word removal, special character stripping. Show a live preview of what the slug looks like as a URL. Huge demand from bloggers and devs.",
+        "h1": "Text to Slug Converter — Generate Clean SEO-Friendly URLs",
+        "p": "Turn any blog title or heading into a perfectly formatted URL slug in one click. Hyphens, lowercase, special characters stripped — ready to paste straight into WordPress, Shopify, or your CMS.",
+        "shortTail": [
+            "text to slug",
+            "url slug generator"
+        ],
+        "mediumTail": [
+            "convert text to url slug",
+            "url slug converter online",
+            "generate seo url slug free",
+            "title to slug converter"
+        ],
+        "longTail": [
+            "how to create a url slug from a title",
+            "seo friendly url slug generator tool",
+            "convert blog title to url slug online",
+            "remove special characters and create url slug",
+            "wordpress url slug generator from text",
+            "text to hyphenated url slug converter free"
+        ]
+    },
+    {
+        "toolName": "Lorem Ipsum Generator",
+        "description": "Generate placeholder text by words, sentences, or paragraphs. Options for classic Lorem Ipsum, random Latin, or gibberish. HTML-wrapped output option (wrapped in <p> tags), copy button, and ability to set exact word count. Used heavily by designers and developers.",
+        "h1": "Lorem Ipsum Generator — Placeholder Text in Seconds",
+        "p": "Generate exactly the amount of dummy text you need — by word, sentence, or paragraph count — with options for classic Latin, HTML output, or randomized variation. Designers and devs, this one's for you.",
+        "shortTail": [
+            "lorem ipsum generator",
+            "lorem ipsum"
+        ],
+        "mediumTail": [
+            "random text generator online",
+            "placeholder text generator tool",
+            "lorem ipsum paragraph generator",
+            "dummy text generator free"
+        ],
+        "longTail": [
+            "generate lorem ipsum text by word count",
+            "lorem ipsum html paragraph generator online",
+            "placeholder text for website design mockup",
+            "lorem ipsum generator with custom word count",
+            "random latin text generator for wireframes",
+            "dummy text generator for web design free"
+        ]
+    },
+    {
+        "toolName": "Text Reverser",
+        "description": "Reverse entire text, reverse word order, or reverse each word individually. Show all three outputs simultaneously. Option to reverse by line. Include a fun 'mirror text' mode using Unicode flipped characters. Great for puzzles, testing, and social media tricks.",
+        "h1": "Text Reverser — Flip, Mirror & Reverse Any Text Online",
+        "p": "Reverse your text by characters, by words, or line by line — or go full mirror mode with upside-down Unicode characters. Simple, instant, and oddly satisfying.",
+        "shortTail": [
+            "text reverser",
+            "reverse text"
+        ],
+        "mediumTail": [
+            "reverse text online tool",
+            "reverse words in a sentence",
+            "backwards text generator",
+            "flip text upside down online"
+        ],
+        "longTail": [
+            "how to reverse text online for free",
+            "reverse word order in a sentence tool",
+            "mirror text generator using unicode characters",
+            "reverse each word individually online",
+            "backwards text generator for social media",
+            "flip and reverse text for fun online"
+        ]
+    },
+    {
+        "toolName": "Word Frequency Counter",
+        "description": "Analyze text and show a sortable table of every word and how many times it appears. Show percentage frequency, highlight top N words, exclude stop words toggle, and downloadable CSV export. Critical for SEO writers checking keyword density and content strategists.",
+        "h1": "Word Frequency Counter — See Which Words Dominate Your Text",
+        "p": "Find out exactly which words are overused, underused, or absent from your content. Paste in any text and get a ranked frequency table — sortable, filterable, and exportable to CSV.",
+        "shortTail": [
+            "word frequency counter",
+            "keyword density checker"
+        ],
+        "mediumTail": [
+            "word frequency analysis tool",
+            "count word occurrences in text",
+            "online keyword density analyzer",
+            "most used words in text finder"
+        ],
+        "longTail": [
+            "free word frequency counter for seo content",
+            "how to count how many times a word appears in text",
+            "keyword density tool for blog posts online",
+            "word occurrence counter with stop word filter",
+            "analyze word frequency in an essay or article",
+            "export word frequency count to csv online"
+        ]
+    },
+    {
+        "toolName": "Find and Replace Text",
+        "description": "Find and replace any word, phrase, or pattern in a block of text. Support regex toggle, case-sensitive toggle, whole word matching, and replace-all vs replace-one mode. Show match count before replacing. Aimed at writers, coders, and data cleaners.",
+        "h1": "Find and Replace Text Online — Bulk Edit Any Text Instantly",
+        "p": "The find-and-replace you wish every text box had. Swap words, fix typos across a whole document, or run regex patterns — right in your browser with no setup required.",
+        "shortTail": [
+            "find and replace text",
+            "text find replace"
+        ],
+        "mediumTail": [
+            "online find and replace tool",
+            "bulk find and replace text online",
+            "find replace with regex online",
+            "text substitution tool free"
+        ],
+        "longTail": [
+            "find and replace multiple words in text online",
+            "bulk text replace tool with regex support",
+            "replace all occurrences of a word online free",
+            "find and replace text without microsoft word",
+            "online text editor with find and replace function",
+            "case sensitive find and replace text tool"
+        ]
+    },
+    {
+        "toolName": "Text to Binary Converter",
+        "description": "Convert plain text to binary (0s and 1s) and back. Show ASCII values alongside. Also support hex and decimal outputs. Byte-grouped binary output option. Include a reverse binary-to-text decoder. Extremely high search volume from students and developers.",
+        "h1": "Text to Binary Converter — Encode & Decode Binary Instantly",
+        "p": "Translate any text into binary code — or decode a wall of 0s and 1s back into readable English. With ASCII, hex, and decimal outputs all in one tool, this is the binary converter that actually explains itself.",
+        "shortTail": [
+            "text to binary",
+            "binary converter"
+        ],
+        "mediumTail": [
+            "text to binary converter online",
+            "binary to text decoder",
+            "convert text to binary code free",
+            "binary code translator online"
+        ],
+        "longTail": [
+            "how to convert text to binary code online",
+            "free text to binary and binary to text converter",
+            "text to binary converter with ascii values",
+            "convert sentence to binary code instantly",
+            "binary code decoder for students online",
+            "text to binary hex decimal converter tool"
+        ]
+    },
+    {
+        "toolName": "Text Size in Bytes / KB Calculator",
+        "description": "Paste text and instantly see its size in bytes, KB, and MB. Show encoding breakdown (UTF-8 vs ASCII). Useful for developers checking API payload sizes, email size limits, database field limits, or HTTP request bodies. Include a character-to-byte ratio explanation.",
+        "h1": "Text Size Calculator — How Many Bytes, KB, or MB Is Your Text?",
+        "p": "Stop guessing whether your payload is too large. Paste in your text and see its exact byte size in UTF-8, ASCII, and Unicode — before it breaks your API, your database, or your email client.",
+        "shortTail": [
+            "text size calculator",
+            "text to kb converter"
+        ],
+        "mediumTail": [
+            "calculate text size in bytes online",
+            "how many bytes is my text",
+            "string size calculator kb mb",
+            "text byte size checker tool"
+        ],
+        "longTail": [
+            "how to calculate the byte size of a string online",
+            "text size in kb calculator for api payloads",
+            "utf-8 byte length calculator for strings",
+            "check text size before sending api request",
+            "how many bytes does my text use utf8 vs ascii",
+            "string byte size tool for developers free"
+        ]
+    },
+    {
+        "toolName": "Duplicate Word Remover",
+        "description": "Remove duplicate words (not lines) within a body of text or a comma/space-separated list. Options for case sensitivity, preserve punctuation, and output as list vs paragraph. Useful for SEO tag cleanups, keyword list deduplication, and social media bios.",
+        "h1": "Duplicate Word Remover — Clean Up Repetitive Text Instantly",
+        "p": "Whether you're cleaning up a keyword list, a tag cloud, or a draft full of repeated phrases — this tool strips every duplicate word and gives you back a lean, clean version.",
+        "shortTail": [
+            "remove duplicate words",
+            "duplicate word remover"
+        ],
+        "mediumTail": [
+            "remove repeated words from text",
+            "online duplicate word cleaner",
+            "deduplicate word list online",
+            "remove duplicate keywords tool"
+        ],
+        "longTail": [
+            "remove duplicate words from a paragraph online free",
+            "clean up repeated keywords in a list tool",
+            "deduplicate seo keyword list online",
+            "remove all duplicate words from text instantly",
+            "how to remove duplicate words in a string online",
+            "keyword list deduplication tool for seo"
+        ]
+    },
+    {
+        "toolName": "Text Line Sorter",
+        "description": "Sort lines alphabetically (A–Z or Z–A), by line length, numerically, or randomly/shuffle. Options for case-sensitive sorting, remove blanks, trim whitespace, and reverse sort. One-click copy of sorted output. A go-to tool for list organization and data cleaning.",
+        "h1": "Text Line Sorter — Sort, Shuffle & Organize Lists Instantly",
+        "p": "Alphabetize a list, sort by length, shuffle randomly, or flip the order — this line sorter handles any list you throw at it, with one-click copy when you're done.",
+        "shortTail": [
+            "text sorter",
+            "sort lines online"
+        ],
+        "mediumTail": [
+            "alphabetize lines of text online",
+            "sort text lines by length tool",
+            "online list sorter alphabetical",
+            "randomize list order online"
+        ],
+        "longTail": [
+            "how to alphabetize a list of words online free",
+            "sort lines of text by length online tool",
+            "shuffle and randomize list items online",
+            "sort numbered list alphabetically online",
+            "text line sorter with blank line removal",
+            "free tool to sort a list of names alphabetically"
+        ]
+    },
+    {
+        "toolName": "Whitespace & Blank Line Remover",
+        "description": "Remove extra spaces, tabs, leading/trailing whitespace, double spaces, and blank lines from text. Options to remove all blank lines, only consecutive blanks, or just normalize spacing. Also includes a tab-to-space converter. Used heavily for cleaning pasted content.",
+        "h1": "Remove Extra Spaces & Blank Lines — Clean Messy Text Instantly",
+        "p": "Pasted text from a PDF, Word doc, or web scrape and it came out a mangled mess of spaces and blank lines? One click fixes everything — trailing spaces, double spaces, empty lines, all gone.",
+        "shortTail": [
+            "remove extra spaces",
+            "remove blank lines"
+        ],
+        "mediumTail": [
+            "remove extra whitespace from text online",
+            "blank line remover tool free",
+            "clean up pasted text online",
+            "strip whitespace from text tool"
+        ],
+        "longTail": [
+            "remove extra spaces and blank lines from text online",
+            "how to remove trailing whitespace from pasted text",
+            "clean up text copied from pdf online tool",
+            "remove double spaces and blank lines free",
+            "whitespace cleaner for html and plain text",
+            "strip leading and trailing spaces from text online"
+        ]
+    },
+    {
+        "toolName": "Sentence Counter",
+        "description": "Count sentences, clauses, and paragraphs with punctuation-aware parsing. Handle edge cases like abbreviations (Dr., Mr.), ellipses, and multiple punctuation. Show average sentence length in words. Useful for readability scoring and academic writing requirements.",
+        "h1": "Sentence Counter — Count Sentences, Paragraphs & Clauses Online",
+        "p": "More accurate than just counting periods — this sentence counter handles abbreviations, ellipses, and complex punctuation to give you a real sentence count alongside paragraph and readability stats.",
+        "shortTail": [
+            "sentence counter",
+            "count sentences online"
+        ],
+        "mediumTail": [
+            "online sentence count tool",
+            "paragraph and sentence counter",
+            "count sentences in a paragraph",
+            "sentence length analyzer free"
+        ],
+        "longTail": [
+            "how to count sentences in a paragraph online",
+            "sentence counter for essays and academic writing",
+            "accurate sentence counter with punctuation handling",
+            "count number of sentences in text free online",
+            "sentence and paragraph counter for blog posts",
+            "average sentence length calculator for readability"
+        ]
+    },
+    {
+        "toolName": "Text to Hashtags Generator",
+        "description": "Paste any text or topic and extract the most relevant hashtags for Instagram, Twitter/X, LinkedIn, and TikTok. Show hashtags grouped by platform character limits and popularity tier (high, medium, niche). Copy with or without the # symbol. Extremely high social media demand.",
+        "h1": "Text to Hashtags Generator — Extract Trending Hashtags from Any Text",
+        "p": "Stop guessing which hashtags to use. Paste your caption or topic and instantly get platform-optimized hashtag suggestions — tiered by popularity and ready to copy straight into your post.",
+        "shortTail": [
+            "hashtag generator",
+            "text to hashtags"
+        ],
+        "mediumTail": [
+            "generate hashtags from text online",
+            "instagram hashtag generator tool",
+            "hashtag extractor from text free",
+            "tiktok hashtag generator online"
+        ],
+        "longTail": [
+            "how to generate hashtags from a caption online",
+            "free hashtag generator for instagram and tiktok",
+            "extract relevant hashtags from text for social media",
+            "niche vs trending hashtag generator tool",
+            "copy paste hashtags from text generator online",
+            "platform specific hashtag generator for linkedin twitter"
+        ]
+    },
+    {
+        "toolName": "Text Repeater",
+        "description": "Repeat any text, word, or character N times with custom separators (newline, comma, space, custom). Options to number each repetition and set max repeat count. Useful for testing, generating placeholder data, filling forms in bulk, and prank-style fun.",
+        "h1": "Text Repeater — Repeat Any Text as Many Times as You Want",
+        "p": "Repeat a word, phrase, or character hundreds of times with your choice of separator — for testing, data generation, form filling, or just a good old-fashioned wall of 'hahaha'.",
+        "shortTail": [
+            "text repeater",
+            "repeat text online"
+        ],
+        "mediumTail": [
+            "repeat text multiple times online",
+            "text repeater with separator",
+            "generate repeated text tool",
+            "word repeater online free"
+        ],
+        "longTail": [
+            "how to repeat text 100 times online free",
+            "text repeater with comma or newline separator",
+            "repeat a word n times online tool",
+            "generate filler text by repeating a phrase",
+            "bulk text repeat generator for testing",
+            "repeat character or word online with custom separator"
+        ]
+    },
+    {
+        "toolName": "String Length Calculator",
+        "description": "Show the exact length of a string including/excluding spaces, count Unicode code points separately from bytes, highlight where the string ends. Allow multi-line mode to show length per line. Targeted squarely at developers debugging string inputs and database column limits.",
+        "h1": "String Length Calculator — Measure Exact String Length Online",
+        "p": "Know exactly how long your string is — in characters, bytes, and Unicode code points. Built for developers who need precise length checks for database fields, API limits, and input validation.",
+        "shortTail": [
+            "string length calculator",
+            "string length checker"
+        ],
+        "mediumTail": [
+            "calculate string length online free",
+            "string character length tool",
+            "check string length in bytes online",
+            "unicode string length calculator"
+        ],
+        "longTail": [
+            "how to check the length of a string online",
+            "string length calculator for database column limits",
+            "count string length in unicode code points online",
+            "string byte length vs character length calculator",
+            "developer tool to check string length free online",
+            "multi line string length checker per line"
+        ]
+    },
+    {
+        "toolName": "Text to List Converter",
+        "description": "Convert a block of text into a comma-separated list, bullet list, numbered list, or JSON array. Options to split by newline, period, comma, or custom delimiter. Trim whitespace from each item. Reverse mode converts any list back to a paragraph. Saves huge amounts of manual formatting time.",
+        "h1": "Text to List Converter — Turn Any Text Into a Formatted List Instantly",
+        "p": "Dump a paragraph in, get a clean numbered list, bullet list, comma-separated string, or JSON array out. The converter for anyone who's ever manually copied things into square brackets one by one.",
+        "shortTail": [
+            "text to list converter",
+            "convert text to list"
+        ],
+        "mediumTail": [
+            "convert paragraph to bullet list online",
+            "text to comma separated list tool",
+            "text to json array converter online",
+            "paragraph to numbered list converter"
+        ],
+        "longTail": [
+            "convert text to comma separated list online free",
+            "turn paragraph into bullet list online tool",
+            "convert text to json array free online",
+            "split text by newline into a list online",
+            "text to numbered list converter for google docs",
+            "how to convert a paragraph to a list online"
+        ]
+    },
+    {
+        "toolName": "Random Text / Sentence Shuffler",
+        "description": "Shuffle lines, sentences, words, or characters in random order. Useful for creating randomized quiz options, shuffling flashcard sets, scrambling sentence order for language learning, or generating unique ad copy variations. Option for seeded randomization for reproducible output.",
+        "h1": "Text Shuffler — Randomize Lines, Sentences & Words Online",
+        "p": "Shuffle a list into a new random order, scramble sentence positions in a paragraph, or randomize words within a sentence — with one click and a copy button waiting at the end.",
+        "shortTail": [
+            "text shuffler",
+            "randomize text online"
+        ],
+        "mediumTail": [
+            "shuffle lines of text randomly online",
+            "randomize word order in sentence",
+            "sentence scrambler online tool",
+            "list randomizer free online"
+        ],
+        "longTail": [
+            "how to randomly shuffle lines of text online free",
+            "scramble sentence word order for language learning",
+            "randomize list items online for quizzes and games",
+            "shuffle paragraph sentences into random order online",
+            "random line order generator for text lists",
+            "shuffle and randomize text lines with one click"
+        ]
+    }
+]

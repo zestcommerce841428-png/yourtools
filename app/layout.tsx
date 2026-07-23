@@ -1,0 +1,113 @@
+import "./globals.css";
+import { Work_Sans } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
+import PrimaryLayout from "@/components/layouts/PrimaryLayout";
+import { Metadata } from "next";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { SITE_URL } from "@/lib/site-config";
+
+// Work Sans - Geometric, modern, great for headings and body
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-work-sans",
+  display: "swap",
+  preload: true,
+  fallback: ["Arial", "sans-serif"],
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "YourTools - Free Online Web Tools & Utilities",
+    template: "%s",
+  },
+  description:
+    "A comprehensive suite of free online tools for file conversion, data processing, audio editing, PDF generation, and more. Fast, secure, and privacy-focused web utilities.",
+  keywords: [
+    "online tools",
+    "web utilities",
+    "file converter",
+    "PDF tools",
+    "audio editor",
+    "CSV converter",
+    "Excel tools",
+    "JSON formatter",
+    "hash generator",
+    "favicon generator",
+    "image tools",
+    "data processing",
+    "free tools",
+    "privacy-focused",
+  ],
+  authors: [{ name: "YourTools" }],
+  creator: "YourTools",
+  publisher: "YourTools",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "YourTools",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  verification: {
+    google: "google-site-verification-code", // Add your Google verification code
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to critical origins */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+      </head>
+      <body className={`${workSans.variable} w-screen`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <PrimaryLayout>{children}</PrimaryLayout>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

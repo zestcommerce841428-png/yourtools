@@ -1,0 +1,252 @@
+"use client";
+
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle, CardAction, CardDescription, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Faqs from "@/components/utils/Faqs";
+
+
+export default function StartupEquityCalculatorPage() {
+  const [founderShares, setFounderShares] = useState<string>("");
+  const [optionPool, setOptionPool] = useState<string>("");
+  const [seedInvestment, setSeedInvestment] = useState<string>("");
+  const [seedValuation, setSeedValuation] = useState<string>("");
+  const [seriesAInvestment, setSeriesAInvestment] = useState<string>("");
+  const [seriesAValuation, setSeriesAValuation] = useState<string>("");
+  const [result, setResult] = useState<{
+    totalShares: number;
+    founderPercent: number;
+    optionPoolPercent: number;
+    seedPercent: number;
+    seriesAPercent: number;
+    dilution: number;
+  } | null>(null);
+
+  const calculateEquity = () => {
+    const founder = parseFloat(founderShares);
+    const options = parseFloat(optionPool);
+    const seedInv = parseFloat(seedInvestment) || 0;
+    const seedVal = parseFloat(seedValuation) || 0;
+    const seriesAInv = parseFloat(seriesAInvestment) || 0;
+    const seriesAVal = parseFloat(seriesAValuation) || 0;
+
+    if (isNaN(founder) || isNaN(options) || founder <= 0) {
+      return;
+    }
+
+    let totalShares = founder + options;
+    let seedShares = 0;
+    let seriesAShares = 0;
+
+    // Seed round
+    if (seedInv > 0 && seedVal > 0) {
+      const seedPercent = seedInv / seedVal;
+      seedShares = (founder + options) * seedPercent / (1 - seedPercent);
+      totalShares += seedShares;
+    }
+
+    // Series A round
+    if (seriesAInv > 0 && seriesAVal > 0) {
+      const seriesAPercent = seriesAInv / seriesAVal;
+      seriesAShares = totalShares * seriesAPercent / (1 - seriesAPercent);
+      totalShares += seriesAShares;
+    }
+
+    const founderPercent = (founder / totalShares) * 100;
+    const optionPoolPercent = (options / totalShares) * 100;
+    const seedPercentCalc = (seedShares / totalShares) * 100;
+    const seriesAPercentCalc = (seriesAShares / totalShares) * 100;
+    const dilution = 100 - founderPercent;
+
+    setResult({
+      totalShares: Math.round(totalShares),
+      founderPercent,
+      optionPoolPercent,
+      seedPercent: seedPercentCalc,
+      seriesAPercent: seriesAPercentCalc,
+      dilution,
+    });
+  };
+
+  const reset = () => {
+    setFounderShares("");
+    setOptionPool("");
+    setSeedInvestment("");
+    setSeedValuation("");
+    setSeriesAInvestment("");
+    setSeriesAValuation("");
+    setResult(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="mb-8">
+          <h1 className="text-3xl font-semibold tracking-tight mb-2">Startup Equity Calculator</h1>
+          <p className="text-muted-foreground">
+            Model your cap table across multiple funding rounds. Calculate founder and investor equity percentages accounting for dilution, option pools, and valuations.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <Card>
+            <CardContent className="p-6 space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="founderShares">Founder Shares</Label>
+                <Input
+                  id="founderShares"
+                  type="number"
+                  placeholder="Enter founder shares"
+                  value={founderShares}
+                  onChange={(e) => setFounderShares(e.target.value)}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="optionPool">Option Pool Shares</Label>
+                <Input
+                  id="optionPool"
+                  type="number"
+                  placeholder="Enter option pool"
+                  value={optionPool}
+                  onChange={(e) => setOptionPool(e.target.value)}
+                />
+              </div>
+
+              <div className="pt-2">
+                <Label className="text-sm font-semibold">Seed Round (Optional)</Label>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <Input id="seedInvestment" type="number" placeholder="Investment" value={seedInvestment} onChange={(e) => setSeedInvestment(e.target.value)} />
+                <Input id="seedValuation" type="number" placeholder="Pre-money Valuation" value={seedValuation} onChange={(e) => setSeedValuation(e.target.value)} />
+              </div>
+
+              <div className="pt-2">
+                <Label className="text-sm font-semibold">Series A (Optional)</Label>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <Input id="seriesAInvestment" type="number" placeholder="Investment" value={seriesAInvestment} onChange={(e) => setSeriesAInvestment(e.target.value)} />
+                <Input id="seriesAValuation" type="number" placeholder="Pre-money Valuation" value={seriesAValuation} onChange={(e) => setSeriesAValuation(e.target.value)} />
+              </div>
+
+              <div className="flex gap-2 pt-4">
+                <Button onClick={calculateEquity} className="flex-1">
+                  Calculate
+                </Button>
+                <Button variant="outline" onClick={reset}>
+                  Reset
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-4">Cap Table</h3>
+              {result ? (
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center p-3 bg-primary/10 rounded-lg">
+                      <span>Founders</span>
+                      <span className="font-bold text-primary">{result.founderPercent.toFixed(1)}%</span>
+                    </div>
+                    <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                      <span>Option Pool</span>
+                      <span className="font-bold">{result.optionPoolPercent.toFixed(1)}%</span>
+                    </div>
+                    {result.seedPercent > 0 && (
+                      <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                        <span>Seed Investors</span>
+                        <span className="font-bold">{result.seedPercent.toFixed(1)}%</span>
+                      </div>
+                    )}
+                    {result.seriesAPercent > 0 && (
+                      <div className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                        <span>Series A Investors</span>
+                        <span className="font-bold">{result.seriesAPercent.toFixed(1)}%</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
+                    <p className="text-sm text-muted-foreground">Total Dilution</p>
+                    <p className="text-lg font-bold text-orange-600">{result.dilution.toFixed(1)}%</p>
+                  </div>
+                  <div className="text-sm text-muted-foreground pt-4 border-t">
+                    <p>Total Shares: {result.totalShares.toLocaleString()}</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  <p>Enter values and click Calculate to see results</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* How It Works Section */}
+        <div className="mt-8">
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-lg font-semibold mb-6">How the Equity Calculator Works</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mb-3">1</div>
+                  <h4 className="font-semibold mb-2">Enter Founder Shares</h4>
+                  <p className="text-sm text-muted-foreground">Input the initial shares allocated to founders and the option pool.</p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mb-3">2</div>
+                  <h4 className="font-semibold mb-2">Add Funding Rounds</h4>
+                  <p className="text-sm text-muted-foreground">Include seed and Series A investment amounts and valuations.</p>
+                </div>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xl font-bold mb-3">3</div>
+                  <h4 className="font-semibold mb-2">View Cap Table</h4>
+                  <p className="text-sm text-muted-foreground">See ownership percentages and total dilution after each round.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-6">
+          <section className="container mx-auto px-4 py-12 mb-12">
+  <h2 className="text-3xl font-semibold mb-8 text-center">
+    Frequently Asked Questions
+  </h2>
+  <Faqs faqs={[
+{
+    question: "What is a typical option pool size?",
+    answer: "Most startups create an option pool of 10-20% of total shares. Early-stage companies often start with 10-15%, while later-stage companies may expand to 20% for hiring executives.",
+  },
+{
+    question: "How much dilution is normal per round?",
+    answer: "Seed rounds typically dilute founders by 15-25%. Series A usually dilutes by 20-30%. Total founder ownership after Series A is often 50-70% of the original.",
+  },
+{
+    question: "What is pre-money vs post-money valuation?",
+    answer: "Pre-money is the company value before investment. Post-money = pre-money + investment. Investor ownership = investment / post-money valuation.",
+  },
+{
+    question: "When should the option pool be created?",
+    answer: "Investors typically require the option pool to be created pre-money, meaning founders bear the dilution. This is standard term sheet language.",
+  },
+{
+    question: "How do I calculate share prices?",
+    answer: "Price per share = pre-money valuation / total shares outstanding. New shares issued = investment amount / price per share.",
+  }
+  ]} />
+</section>
+        </div>
+
+        {/* Related Tools Section */}
+        <div className="mt-6">
+        </div>
+      </div>
+    </div>
+  );
+}

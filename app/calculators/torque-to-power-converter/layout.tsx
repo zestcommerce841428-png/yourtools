@@ -1,0 +1,79 @@
+import type { Metadata } from "next";
+import ToolLinkCards from "@/components/utils/ToolLinkCards";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: "Torque to Power Converter – Convert Engine Torque & RPM to HP or kW",
+  description: "Calculate your engine's power output from torque and RPM with our Torque-to-Power            Converter. Enter torque in Nm or lb-ft along with RPM to get horsepower or kilowatts            instantly — perfect for automotive enthusiasts and engineers.",
+  alternates: {
+    canonical: "/calculators/torque-to-power-converter",
+  },
+};
+
+const tools = [
+  {
+    "name": "Torque Calculator",
+    "description": "Torque Calculator",
+    "href": "/calculators/torque-calculator"
+  },
+  {
+    "name": "Horsepower To Kw Converter",
+    "description": "Horsepower to kW Converter – Instantly Convert HP to Kilowatts",
+    "href": "/calculators/horsepower-to-kw-converter"
+  },
+  {
+    "name": "Pump Horsepower Calculator",
+    "description": "Pump Horsepower Calculator – Calculate Required Pump Power",
+    "href": "/calculators/pump-horsepower-calculator"
+  },
+  {
+    "name": "Robot Motor Torque Calculator",
+    "description": "Robot Motor Torque Calculator – Calculate Required Torque for Motors & Actuators",
+    "href": "/calculators/robot-motor-torque-calculator"
+  },
+  {
+    "name": "Shaft Torque Calculator",
+    "description": "Shaft Torque Calculator – Calculate Shaft Torque",
+    "href": "/calculators/shaft-torque-calculator"
+  },
+  {
+    "name": "Rpm Calculator",
+    "description": "RPM Calculator – Calculate Rotational Speed and Gear Ratios",
+    "href": "/calculators/rpm-calculator"
+  }
+];
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-y-4">
+      <div>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/calculators">Calculators</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/calculators/torque-to-power-converter">Torque To Power Converter</BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+      {children}
+      <div className="mt-16 max-w-6xl">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Other Free Tools</h2>
+        <ToolLinkCards tools={tools} />
+      </div>
+    </div>
+  );
+}

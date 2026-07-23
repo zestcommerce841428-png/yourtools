@@ -1,0 +1,83 @@
+import type { Metadata } from "next";
+import ToolLinkCards from "@/components/utils/ToolLinkCards";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+export const metadata: Metadata = {
+  title: "Cycling Calorie Calculator – Calories Burned Biking Calculator",
+  description: "Estimate how many calories you burn on your bike rides. Our cycling calorie calculator factors in your weight, speed, and ride duration for accurate energy expenditure results.",
+  alternates: {
+    canonical: "/calculators/cycling-calorie-calculator",
+  },
+};
+
+const tools = [
+  {
+    "name": "Swimming Calorie Calculator",
+    "description": "Swimming Calorie Calculator – How Many Calories Does Swimming Burn?",
+    "href": "/calculators/swimming-calorie-calculator"
+  },
+  {
+    "name": "Walking Calorie Calculator",
+    "description": "Walking Calorie Calculator – How Many Calories Do You Burn Walking?",
+    "href": "/calculators/walking-calorie-calculator"
+  },
+  {
+    "name": "Activity Calorie Calculator",
+    "description": "Activity Calorie Burn Calculator – Calories Burned by Activity & Duration",
+    "href": "/calculators/activity-calorie-calculator"
+  },
+  {
+    "name": "Steps To Calories Calculator",
+    "description": "Steps to Calories Calculator – Convert Your Steps to Calories Burned",
+    "href": "/calculators/steps-to-calories-calculator"
+  },
+  {
+    "name": "Calorie Deficit Calculator",
+    "description": "Calorie Deficit Calculator – How Many Calories to Cut to Lose Weight?",
+    "href": "/calculators/calorie-deficit-calculator"
+  },
+  {
+    "name": "Daily Calorie Needs Calculator",
+    "description": "Daily Calorie Needs Calculator – How Many Calories Should You Eat?",
+    "href": "/calculators/daily-calorie-needs-calculator"
+  }
+];
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-y-4">
+            <div>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators">Calculators</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/calculators/cycling-calorie-calculator">Cycling Calorie Calculator</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+            <header className="max-w-3xl">
+        <h1 className="text-3xl font-bold mb-3">Cycling Calorie Calculator – Calories Burned Biking Calculator</h1>
+        <p className="text-muted-foreground">Estimate how many calories you burn on your bike rides. Our cycling calorie calculator factors in your weight, speed, and ride duration for accurate energy expenditure results.</p>
+      </header>
+      {children}
+      <div className="mt-16 max-w-6xl">
+        <h2 className="text-2xl font-semibold mb-6 text-center">Other Free Tools</h2>
+        <ToolLinkCards tools={tools} />
+      </div>
+    </div>
+  );
+}
