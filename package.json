@@ -9,9 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "dev-workers": "node build-workers.js --watch",
-    "deploy": "vercel --prod",
     "cf:build": "opennextjs-cloudflare build",
-    "cf:deploy": "opennextjs-cloudflare build && wrangler deploy",
+    "deploy": "opennextjs-cloudflare build && wrangler deploy",
     "ts-err": "npx tsc --noEmit 2>&1 | tee ts-errors.txt"
   },
   "dependencies": {
