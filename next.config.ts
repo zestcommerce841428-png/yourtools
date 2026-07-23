@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
   // (Next.js 16 decoupled ESLint from `next build` entirely, so there's no
   // equivalent `eslint` build option anymore - use `next lint` / npm run lint.)
   typescript: { ignoreBuildErrors: true },
+  // Sequential generation proved reliable (44+ min, no crash) where parallel
+  // generation failed unexplained within minutes - prioritizing a working
+  // deploy over build speed for now.
+  experimental: {
+    cpus: 1,
+  },
   async headers() {
     return [
       {
