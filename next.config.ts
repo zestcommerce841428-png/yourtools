@@ -24,11 +24,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   poweredByHeader: false,
   turbopack: {}, // Empty turbopack config to silence Next.js 16 warning
-  // Type-checking and linting run separately (npm run ts-err / npm run lint).
-  // Skipping them in `next build` avoids a redundant full-repo pass across
-  // 1,931 pages on every deploy, since they're already verified elsewhere.
+  // Type-checking runs separately (npm run ts-err). Skipping it in `next build`
+  // avoids a redundant full-repo pass across 1,931 pages on every deploy.
+  // (Next.js 16 decoupled ESLint from `next build` entirely, so there's no
+  // equivalent `eslint` build option anymore - use `next lint` / npm run lint.)
   typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
   async headers() {
     return [
       {
