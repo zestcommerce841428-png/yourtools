@@ -43,6 +43,10 @@ yarn-error.log*
 # claude code internal state
 .claude/scheduled_tasks.lock
 
+# local batched-build scratch output/test artifacts, not meant to be committed
+.next-batches/
+scratch-*
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
