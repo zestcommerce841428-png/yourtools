@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build:worker": "webpack --config webpack.worker.js",
-    "build": "npm run build:worker && cross-env NODE_OPTIONS=--max-old-space-size=8192 next build --webpack --debug",
+    "build": "npm run build:worker && cross-env NODE_OPTIONS=--max-old-space-size=11264 next build --webpack --debug",
     "start": "next start",
     "lint": "eslint",
     "dev-workers": "node build-workers.js --watch",
