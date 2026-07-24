@@ -32,7 +32,18 @@ jobs:
         run: df -h
 
       - name: Build for Cloudflare Workers
-        run: npm run cf:build
+        run: |
+          ( while true; do
+              echo "--- $(date -u +%H:%M:%S) resource snapshot ---"
+              free -h
+              df -h / 2>/dev/null | tail -1
+              sleep 60
+            done ) &
+          MONITOR_PID=$!
+          npm run cf:build
+          BUILD_EXIT=$?
+          kill $MONITOR_PID 2>/dev/null || true
+          exit $BUILD_EXIT
 
       - name: Show disk space after build
         if: always()

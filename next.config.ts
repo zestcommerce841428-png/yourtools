@@ -29,11 +29,11 @@ const nextConfig: NextConfig = {
   // (Next.js 16 decoupled ESLint from `next build` entirely, so there's no
   // equivalent `eslint` build option anymore - use `next lint` / npm run lint.)
   typescript: { ignoreBuildErrors: true },
-  // Sequential generation proved reliable (44+ min, no crash) where parallel
-  // generation failed unexplained within minutes - prioritizing a working
-  // deploy over build speed for now.
+  // Full parallelism failed within ~7min (unexplained SIGTERM, likely resource
+  // contention); cpus:1 ran 53min then the runner lost heartbeat from sustained
+  // CPU saturation. Trying a middle ground between the two failure modes.
   experimental: {
-    cpus: 1,
+    cpus: 2,
   },
   async headers() {
     return [
