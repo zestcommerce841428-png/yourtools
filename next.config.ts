@@ -41,6 +41,9 @@ const nextConfig: NextConfig = {
     "@jsquash/jxl",
     "@jsquash/qoi",
     "@jsquash/webp",
+    "@imgly/background-removal",
+    "onnxruntime-web",
+    "tesseract.js",
   ],
   async headers() {
     return [
