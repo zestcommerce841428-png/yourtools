@@ -29,6 +29,19 @@ const nextConfig: NextConfig = {
   // (Next.js 16 decoupled ESLint from `next build` entirely, so there's no
   // equivalent `eslint` build option anymore - use `next lint` / npm run lint.)
   typescript: { ignoreBuildErrors: true },
+  // These packages ship WASM/worker internals that only ever run in the
+  // browser (behind "use client" boundaries), but the server compiler still
+  // walks their module graph when building the RSC client-reference
+  // manifest. Marking them external stops webpack from trying to parse
+  // their .wasm/worker files server-side at all - it just leaves a plain
+  // require() in the server bundle, which is never actually invoked.
+  serverExternalPackages: [
+    "@jsquash/avif",
+    "@jsquash/jpeg",
+    "@jsquash/jxl",
+    "@jsquash/qoi",
+    "@jsquash/webp",
+  ],
   async headers() {
     return [
       {
@@ -48,7 +61,6 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
-    // Handle web workers
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -56,30 +68,34 @@ const nextConfig: NextConfig = {
         path: false,
         os: false,
       };
+    }
 
-      // Handle worker files
-      config.module.rules.push({
-        test: /\.worker\.js$/,
-        use: { loader: "worker-loader" },
-      });
-      config.module.rules.push({
-        test: /\.wasm$/,
-        type: "webassembly/async",
-      });
+    // Handle worker/wasm files. The server compile also walks these through
+    // client components' import graphs (e.g. ImageCompressor.tsx importing
+    // @jsquash/jxl), even though the code only ever executes in the browser -
+    // without a registered parser for the server config too, `next build`
+    // fails on those imports with "No parser registered for webassembly/async".
+    config.module.rules.push({
+      test: /\.worker\.js$/,
+      use: { loader: "worker-loader" },
+    });
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: "webassembly/async",
+    });
 
-      // Exclude TypeScript files in workers directory from being processed by Next.js
-      const tsRule = config.module.rules.find(
-        (rule: any) => rule.test && rule.test.toString().includes("ts"),
-      );
-      if (tsRule && tsRule.exclude) {
-        if (Array.isArray(tsRule.exclude)) {
-          tsRule.exclude.push(/public\/workers/);
-        } else {
-          tsRule.exclude = [tsRule.exclude, /public\/workers/];
-        }
-      } else if (tsRule) {
-        tsRule.exclude = /public\/workers/;
+    // Exclude TypeScript files in workers directory from being processed by Next.js
+    const tsRule = config.module.rules.find(
+      (rule: any) => rule.test && rule.test.toString().includes("ts"),
+    );
+    if (tsRule && tsRule.exclude) {
+      if (Array.isArray(tsRule.exclude)) {
+        tsRule.exclude.push(/public\/workers/);
+      } else {
+        tsRule.exclude = [tsRule.exclude, /public\/workers/];
       }
+    } else if (tsRule) {
+      tsRule.exclude = /public\/workers/;
     }
 
     return config;
